@@ -16,7 +16,7 @@
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\NuGet.Packager\lib\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,14 +24,14 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\NuGet.Packager\lib\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,6 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JSON.cs" />
+    <Compile Include="Models\BlastRequest.cs" />
+    <Compile Include="Models\EmailRequest.cs" />
+    <Compile Include="Models\PurchaseRequest.cs" />
+    <Compile Include="Models\SendRequest.cs" />
+    <Compile Include="Models\TemplateRequest.cs" />
+    <Compile Include="Models\UserRequest.cs" />
     <Compile Include="OrdinalComparer.cs" />
     <Compile Include="SailthruClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,12 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sailthru.Models\Sailthru.Models.csproj">
-      <Project>{4993ADAC-7553-4733-B72F-011CE4D93A3B}</Project>
-      <Name>Sailthru.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

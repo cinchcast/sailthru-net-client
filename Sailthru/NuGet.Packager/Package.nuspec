@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Sailthru.Client</id>
+    <version>1.0.0</version>
+    <title>Sailthru Client</title>
+    <authors>paleta</authors>
+    <owners></owners>
+    <description>
+      The .NET implementation of the Sailthru Client. This package was created by Cinchcast Inc since the original authori didn't do it.
+    </description>
+    <releaseNotes>
+    </releaseNotes>
+    <summary>
+        The .NET implementation of the Sailthru Client. This package was created by Cinchcast Inc since the original authori didn't do it.
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/cinchcast/sailthru-net-client</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <dependencies>
+        <group targetFramework="net40">
+          <dependency id="Newtonsoft.Json" version="4.5" />
+        </group>
+    </dependencies>
+    <references></references>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="tools\" target="tools" />
+    <file src="content\" target="content" />
+  </files>
+</package>
