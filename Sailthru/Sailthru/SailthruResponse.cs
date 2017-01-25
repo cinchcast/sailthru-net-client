@@ -64,19 +64,15 @@ namespace Sailthru
         /// </summary>
         private void parseJSON()
         {   
-
             if (webResponse != null)
             {
-                HttpWebResponse httpWebResponse = webResponse;
-                Stream dataStream = httpWebResponse.GetResponseStream();
-                StreamReader reader = new StreamReader(dataStream);
-
-                var responseStr = reader.ReadToEnd();
-
-                // Clean up the streams.
-                reader.Close();
-                dataStream.Close();
-                webResponse.Close();
+                string responseStr;
+                using (HttpWebResponse httpWebResponse = webResponse)
+                using (Stream dataStream = httpWebResponse.GetResponseStream())
+                using (StreamReader reader = new StreamReader(dataStream))
+                {
+                    responseStr = reader.ReadToEnd();
+                }
 
                 this.rawResponse = responseStr;
 
@@ -95,8 +91,8 @@ namespace Sailthru
                     this.rawResponse = responseStr;
                     this.hashtableResponse = createErrorResponse(responseStr);
                 }
-                
-                
+
+
             }
             else
             {

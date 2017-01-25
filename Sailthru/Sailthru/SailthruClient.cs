@@ -8,24 +8,26 @@ using System.Security;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Collections.Specialized;
-using System.Web;
 using Sailthru.Models;
 using Newtonsoft.Json;
+#if !NETSTANDARD
+using System.Web;
+#endif
 
 namespace Sailthru
 {
     public class SailthruClient
     {
-        #region Properties
+#region Properties
         private static OrdinalComparer ORDINAL_COMPARER = new OrdinalComparer();
         private static string DEFAULT_API_URL = "https://api.sailthru.com";
         private string apiHost;
         private string apiKey;
         private string secret;
 
-        #endregion
+#endregion
 
-        #region Constructor
+#region Constructor
 
         /// <summary>
         /// Constructor with default API URI
@@ -54,9 +56,9 @@ namespace Sailthru
         }
 
         
-        #endregion
+#endregion
 
-        #region Public Methods
+#region Public Methods
 
         /// <summary>
         /// Receive the output of a Post.
@@ -571,17 +573,19 @@ namespace Sailthru
 
 
 
-        #endregion
+#endregion
 
-        #region Protected Methods
+#region Protected Methods
 
         protected HttpWebRequest BuildRequest(String method, String path)
         {
             String uri = this.apiHost + "/" + path;
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(uri);
             request.Method = method;
-            request.UserAgent = "Sailthru API C# Client";
+            request.Headers[HttpRequestHeader.UserAgent] = "Sailthru API C# Client";
+#if !NETSTANDARD
             request.SendChunked = false;
+#endif
             return request;
         }
 
@@ -598,12 +602,11 @@ namespace Sailthru
             String bodyString = GetParameterString(parameters);
             byte[] body = Encoding.UTF8.GetBytes(bodyString);
 
-            request.ContentLength = body.Length;
+            request.Headers[HttpRequestHeader.ContentLength] = body.Length.ToString();
 
             using (Stream requestStream = request.GetRequestStream())
             {
                 requestStream.Write(body, 0, body.Length);
-                requestStream.Close();
             }
 
             return request;
@@ -633,13 +636,15 @@ namespace Sailthru
             bodyBuilder.Append("Content-Type: text/plain\r\n\r\n");
 
             // Read file and add to body
-            using (StreamReader streamReader = new StreamReader(filePath)) {
+            using (var fs = File.OpenRead(fileName))
+            using (StreamReader streamReader = new StreamReader(fs))
+            {
                 char[] buffer = new char[1024];
                 int read = 0;
-                while ((read = streamReader.ReadBlock(buffer, 0, buffer.Length)) != 0) {
+                while ((read = streamReader.ReadBlock(buffer, 0, buffer.Length)) != 0)
+                {
                     bodyBuilder.Append(read == 1024 ? buffer : buffer.Take(read).ToArray());
                 }
-                streamReader.Close();
             }
 
             // Finish file part
@@ -652,7 +657,6 @@ namespace Sailthru
             using (Stream stream = request.GetRequestStream()) 
             {
                 stream.Write(bodyBytes, 0, bodyBytes.Length);
-                stream.Close();
             }
 
             return request;
@@ -737,9 +741,9 @@ namespace Sailthru
             return builder.Length > 0 ? builder.ToString() : "";
         }
 
-        #endregion
+#endregion
 
-        #region Private Methods
+#region Private Methods
 
         private void AddAuthenticationAndFormatToParams(Hashtable parameters)
         {
@@ -773,7 +777,11 @@ namespace Sailthru
         /// <returns></returns>
         private string UrlEncode(string s)
         {
+#if NETSTANDARD
+            return WebUtility.UrlEncode(s == null ? "" : s);
+#else
             return HttpUtility.UrlEncode(s == null ? "" : s);
+#endif
         }
 
         private static void OrdinalSort(Object[] values)
@@ -789,7 +797,11 @@ namespace Sailthru
         private static string md5(string value)
         {
             byte[] original_bytes = System.Text.Encoding.UTF8.GetBytes(value);
-            byte[] encoded_bytes = new MD5CryptoServiceProvider().ComputeHash(original_bytes);
+            byte[] encoded_bytes;
+            using (var md5 = MD5.Create())
+            {
+                encoded_bytes = md5.ComputeHash(original_bytes);;
+            }
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < encoded_bytes.Length; i++)
             {
@@ -798,7 +810,7 @@ namespace Sailthru
             return result.ToString();
         }
 
-        #endregion
+#endregion
 
     }
 }
