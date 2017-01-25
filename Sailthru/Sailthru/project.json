@@ -1,0 +1,26 @@
+﻿{
+  "version": "1.0.0-*",
+  "dependencies": {
+    "Newtonsoft.Json": "9.0.1"
+  },
+  "frameworks": {
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Net": "4.0.0.0",
+        "System.Web":  "4.0.0.0" 
+      }
+    },
+    "netstandard1.6": {
+      "dependencies": {
+        "NETStandard.Library": "1.6.0",
+        "System.Collections.NonGeneric": "4.0.1",
+        "System.Collections.Specialized": "4.0.1",
+        "System.Net.Requests":  "4.0.11", 
+        "System.Runtime.Extensions": "4.1.0"
+      },
+      "buildOptions": {
+        "define": [ "NETSTANDARD" ]
+      }
+    }
+  }
+}

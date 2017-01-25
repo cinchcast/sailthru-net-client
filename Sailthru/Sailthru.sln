@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sailthru", "Sailthru\Sailthru.csproj", "{21C7EF1E-3D2E-4AA8-B3FA-787A80F7C939}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGet.Packager", "NuGet.Packager\NuGet.Packager.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Sailthru", "Sailthru\Sailthru.xproj", "{B2485F67-FCDF-412F-81B6-F6C90F9F27AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,19 +11,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{21C7EF1E-3D2E-4AA8-B3FA-787A80F7C939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21C7EF1E-3D2E-4AA8-B3FA-787A80F7C939}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21C7EF1E-3D2E-4AA8-B3FA-787A80F7C939}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21C7EF1E-3D2E-4AA8-B3FA-787A80F7C939}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0451BAEF-DF2E-4B98-8644-94EE9415E389}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2485F67-FCDF-412F-81B6-F6C90F9F27AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2485F67-FCDF-412F-81B6-F6C90F9F27AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2485F67-FCDF-412F-81B6-F6C90F9F27AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2485F67-FCDF-412F-81B6-F6C90F9F27AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Sailthru\Sailthru.csproj
 	EndGlobalSection
 EndGlobal

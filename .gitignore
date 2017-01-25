@@ -7,3 +7,5 @@ dist
 *.user
 *.cache
 *.userprefs
+.vs/
+*.lock.json
